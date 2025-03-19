@@ -1,4 +1,4 @@
-import re 
+import re
 import streamlit as st
 
 # Page styling
@@ -17,38 +17,42 @@ st.title("Password Strength Generator")
 st.write("Enter your password")
 
 def check_password_strength(password):
-    score = 0 
-    feedback = [] 
- if len(password) >= 8:
+    score = 0
+    feedback = []
+
+    # Check if the password length is at least 8 characters
+    if len(password) >= 8:
         score += 1
- else:
+    else:
         feedback.append("❌ Password should be at least 8 characters.")
     
- if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password):
+    # Check for both uppercase and lowercase letters
+    if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password):
         score += 1
- else:
+    else:
         feedback.append("❌ Password should include both uppercase and lowercase letters.")
 
- if re.search(r"\d", password):
+    # Check for at least one digit
+    if re.search(r"\d", password):
         score += 1
- else:
+    else:
         feedback.append("❌ Password should include at least one digit.")
 
-# Check for special characters
- if re.search(r"[!@#$%&*]", password):
+    # Check for special characters
+    if re.search(r"[!@#$%&*]", password):
         score += 1
- else:
+    else:
         feedback.append("❌ Password should include at least one special character.")
 
- # Display password strength      
- if score == 4:
-     st.success("Strong")
- elif score == 3:
+    # Display password strength
+    if score == 4:
+        st.success("Strong")
+    elif score == 3:
         st.success("Risky")
- else:
+    else:
         st.error(" 🕷️ Unsafe")    
 
- # Feedback
+    # Feedback
     if feedback:
         with st.expander("Improve your password"):
             for item in feedback:
