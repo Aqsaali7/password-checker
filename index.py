@@ -2,7 +2,7 @@ import re
 import streamlit as st
 
 # Page styling
-st.set_config(page_title="Password strength with Aqsa Ali", layout="centered")
+st.set_page_config(page_title="Password strength with Aqsa Ali", layout="centered")
 st.markdown("""
 <style>
     .main {text-align: center;}
